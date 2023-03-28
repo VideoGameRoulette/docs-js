@@ -92,3 +92,4 @@ jobs:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./out
           publish_branch: gh-pages
+          repository: VideoGameRoulette/qsys-qrc-py
