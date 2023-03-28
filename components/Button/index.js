@@ -60,11 +60,11 @@ const getColor = (color) => {
     }
 }
 
-export const Button = ({ className: externalClassNames = "", color = "default", children, callback = () => null }) => {
+export const Button = ({ className: externalClassNames = "", color = "default", children, callback }) => {
     const c = getColor(color);
     return (
         <button
-            className={classNames(externalClassNames, c, "p-2 px-4 border-2 m-2 rounded-md")}
+            className={classNames(externalClassNames, c, "p-2 border-2 m-2 rounded-md")}
             onClick={() => callback()}
         >
             {children}

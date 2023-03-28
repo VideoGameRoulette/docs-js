@@ -162,12 +162,173 @@ export const functionList = [
     },
 ];
 
-const CodeBlock = ({ funcName, snippet, description, params = [] }) => {
+export const functionList2 = [
+    {
+        name: "send_command",
+        snippet: "async function send_command(\n\tsock: net.Socket,\n\tmethod: string,\n\tparams: Array(objects)\n)",
+        description: "Sends a JSON-RPC command to a Q-SYS Core device.",
+        params: [
+            {
+                name: "sock",
+                desc: "The socket object used for communication with the Q-SYS Core device."
+            },
+            {
+                name: "method",
+                desc: "The name of the method to call in the JSON-RPC command."
+            },
+            {
+                name: "params",
+                desc: "The parameters to pass to the method."
+            }
+        ],
+    },
+    {
+        name: "logon",
+        snippet: "async function logon(\n\tsock: net.Socket,\n\tuser: string,\n\tpin: string\n)",
+        description: "Logs in to a Q-SYS Core device.",
+        params: [
+            {
+                name: "sock",
+                desc: "The socket object used for communication with the Q-SYS Core device."
+            }
+        ],
+    },
+    {
+        name: "no_op",
+        snippet: "async function no_op(\n\tsock: net.Socket\n)",
+        description: "Sends a JSON-RPC request with no operation to the Q-SYS Core device.",
+        params: [
+            {
+                name: "sock",
+                desc: "The socket object used for communication with the Q-SYS Core device."
+            }
+        ],
+    },
+    {
+        name: "get_status",
+        snippet: "async function get_status(\n\tsock: net.Socket\n)",
+        description: "Sends a JSON-RPC request to get the status of the Q-SYS Core device.",
+        params: [
+            {
+                name: "sock",
+                desc: "The socket object used for communication with the Q-SYS Core device."
+            }
+        ],
+    },
+    {
+        name: "get_control",
+        snippet: "async function get_control(\n\tsock: net.Socket,\n\tname: Array(string)\n)",
+        description: "Sends a JSON-RPC request to get the value of a control in the Q-SYS Core device.",
+        params: [
+            {
+                name: "sock",
+                desc: "The socket object used for communication with the Q-SYS Core device."
+            },
+            {
+                name: "name",
+                desc: "The name of the control to get the value of."
+            }
+        ],
+    },
+    {
+        name: "set_control",
+        snippet: "async function set_control(\n\tsock: net.Socket,\n\tname: string,\n\tvalue: int,\n\tramp: Optional[float] = None\n)",
+        description: "Sends a JSON-RPC request to set the value of a control in the Q-SYS Core device.",
+        params: [
+            {
+                name: "sock",
+                desc: "The socket object used for communication with the Q-SYS Core device."
+            },
+            {
+                name: "name",
+                desc: "The name of the control to get the value of."
+            },
+            {
+                name: "value",
+                desc: "The value to set the control to."
+            },
+            {
+                name: "ramp",
+                desc: "The time in seconds it takes to ramp the control to the new value."
+            },
+        ],
+    },
+    {
+        name: "get_component",
+        snippet: "async function get_component(\n\tsock: net.Socket,\n\tname: string,\n\tcontrol_name: string\n)",
+        description: "Sends a JSON-RPC request to get the value of a control for a specific component in the Q-SYS Core device.",
+        params: [
+            {
+                name: "sock",
+                desc: "The socket object used for communication with the Q-SYS Core device."
+            },
+            {
+                name: "name",
+                desc: "The name of the control to get the value of."
+            },
+            {
+                name: "control_name",
+                desc: "The name of the control to get the value of."
+            }
+        ],
+    },
+    {
+        name: "set_component",
+        snippet: "async function set_component(\n\tsock: net.Socket,\n\tname: string,\n\tvalue: int\n)",
+        description: "Sends a JSON-RPC request to set the value of a control for a specific component in the Q-SYS Core device.",
+        params: [
+            {
+                name: "sock",
+                desc: "The socket object used for communication with the Q-SYS Core device."
+            },
+            {
+                name: "name",
+                desc: "The name of the control to get the value of."
+            },
+            {
+                name: "value",
+                desc: "The value to set the control to."
+            }
+        ],
+    },
+    {
+        name: "get_component_controls",
+        snippet: "async function get_component_controls(\n\tsock: net.Socket,\n\tname: string\n)",
+        description: "Sends a JSON-RPC request to get all controls of a component in the Q-SYS Core device.",
+        params: [
+            {
+                name: "sock",
+                desc: "The socket object used for communication with the Q-SYS Core device."
+            },
+            {
+                name: "name",
+                desc: "The name of the control to get the value of."
+            }
+        ],
+    },
+    {
+        name: "get_component_components",
+        snippet: "async function get_component_components(\n\tsock: net.Socket\n)",
+        description: "Sends a JSON-RPC request to get all child components of a component in the Q-SYS Core device.",
+        params: [
+            {
+                name: "sock",
+                desc: "The socket object used for communication with the Q-SYS Core device."
+            },
+            {
+                name: "name",
+                desc: "The name of the control to get the value of."
+            }
+        ],
+    },
+];
+
+const CodeBlock = ({ funcName, snippet, description, params = [], state }) => {
     return (
         <>
             <h3 className="text-lg font-bold my-4" id={funcName}>{funcName}</h3>
             <div className="bg-[#1e1e1e] rounded-md overflow-hidden">
-                <SyntaxHighlighter language="python" style={vscDarkPlus}>
+                <SyntaxHighlighter language={state ? "javascript" : "python"} style={vscDarkPlus}>
                     {snippet}
                 </SyntaxHighlighter>
             </div>

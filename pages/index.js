@@ -1,11 +1,23 @@
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Header from 'components/Header';
 import { MainContainer, SecondaryContainer } from 'components/Containers';
 import { SideBar } from 'components/Navigation';
 import Introduction from 'components/Introduction';
-import CodeBlock, { functionList } from 'components/CodeBlock';
+import CodeBlock, { functionList, functionList2 } from 'components/CodeBlock';
 
 export default function Home() {
+  const [state, setState] = useState(false);
+  const [list, setList] = useState(functionList);
+
+  useEffect(() => {
+    if (!state) {
+      setList(functionList);
+      return;
+    }
+    setList(functionList2);
+  }, [state]);
+
   return (
     <>
       <Head>
@@ -16,15 +28,15 @@ export default function Home() {
       </Head>
       <div className="absolute w-full h-full bg-gray-100 overflow-hidden">
         <MainContainer>
-          <Header title="qsys-qrc-py" version="0.0.1" />
+          <Header title="qsys-qrc" version="0.0.1" state={state} callback={setState} />
           <SecondaryContainer>
             <SideBar />
             <main className="bg-gray-700 w-full h-full overflow-y-auto">
               <div className="w-full h-full flex flex-col xl:p-8 p-4 gap-4 text-gray-200">
                 <div className="w-full h-full">
-                  <Introduction />
-                  {functionList.map(({ name, snippet, description, params }) => (
-                    <CodeBlock key={name} funcName={name} snippet={snippet} description={description} params={params} />
+                  <Introduction state={state} />
+                  {list.map(({ name, snippet, description, params }) => (
+                    <CodeBlock key={name} funcName={name} snippet={snippet} description={description} params={params} state={state} />
                   ))}
                   <footer className="w-full h-64"></footer>
                 </div>
