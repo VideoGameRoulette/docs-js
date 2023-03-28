@@ -96,7 +96,3 @@ jobs:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./out
           publish_branch: gh-pages
-          # set repository name and username for push force (optional)
-          repository_name: VideoGameRoulette/qsys-qrc-py
-          repository_username: VideoGameRoulette
-
