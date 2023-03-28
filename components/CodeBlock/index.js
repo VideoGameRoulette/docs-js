@@ -4,7 +4,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 export const functionList = [
     {
         name: "send_command",
-        snippet: "async def send_command(sock: socket.socket, method: str, params: Iterable[str])",
+        snippet: "async def send_command(\n\tsock: socket.socket,\n\tmethod: str,\n\tparams: Iterable[str]\n)",
         description: "Sends a JSON-RPC command to a Q-SYS Core device.",
         params: [
             {
@@ -23,7 +23,7 @@ export const functionList = [
     },
     {
         name: "logon",
-        snippet: "async def logon(sock: socket.socket, user: str, pin: str)",
+        snippet: "async def logon(\n\tsock: socket.socket,\n\tuser: str,\n\tpin: str\n)",
         description: "Logs in to a Q-SYS Core device.",
         params: [
             {
@@ -34,7 +34,7 @@ export const functionList = [
     },
     {
         name: "no_op",
-        snippet: "async def no_op(sock: socket.socket)",
+        snippet: "async def no_op(\n\tsock: socket.socket\n)",
         description: "Sends a JSON-RPC request with no operation to the Q-SYS Core device.",
         params: [
             {
@@ -45,7 +45,7 @@ export const functionList = [
     },
     {
         name: "get_status",
-        snippet: "async def get_status(sock: socket.socket)",
+        snippet: "async def get_status(\n\tsock: socket.socket\n)",
         description: "Sends a JSON-RPC request to get the status of the Q-SYS Core device.",
         params: [
             {
@@ -56,7 +56,7 @@ export const functionList = [
     },
     {
         name: "get_control",
-        snippet: "async def get_control(sock: socket.socket, name: List[str])",
+        snippet: "async def get_control(\n\tsock: socket.socket,\n\tname: List[str]\n)",
         description: "Sends a JSON-RPC request to get the value of a control in the Q-SYS Core device.",
         params: [
             {
@@ -71,7 +71,7 @@ export const functionList = [
     },
     {
         name: "set_control",
-        snippet: "async def set_control(sock: socket.socket, name: str, value: int, ramp: Optional[float] = None)",
+        snippet: "async def set_control(\n\tsock: socket.socket,\n\tname: str,\n\tvalue: int,\n\tramp: Optional[float] = None\n)",
         description: "Sends a JSON-RPC request to set the value of a control in the Q-SYS Core device.",
         params: [
             {
@@ -94,7 +94,7 @@ export const functionList = [
     },
     {
         name: "get_component",
-        snippet: "async def get_component(sock: socket.socket, name: str, control_name: str)",
+        snippet: "async def get_component(\n\tsock: socket.socket,\n\tname: str,\n\tcontrol_name: str\n)",
         description: "Sends a JSON-RPC request to get the value of a control for a specific component in the Q-SYS Core device.",
         params: [
             {
@@ -113,7 +113,7 @@ export const functionList = [
     },
     {
         name: "set_component",
-        snippet: "async def set_component(sock: socket.socket, name: str, value: int)",
+        snippet: "async def set_component(\n\tsock: socket.socket,\n\tname: str,\n\tvalue: int\n)",
         description: "Sends a JSON-RPC request to set the value of a control for a specific component in the Q-SYS Core device.",
         params: [
             {
@@ -132,7 +132,7 @@ export const functionList = [
     },
     {
         name: "get_component_controls",
-        snippet: "async def get_component_controls(sock: socket.socket, name: str)",
+        snippet: "async def get_component_controls(\n\tsock: socket.socket,\n\tname: str\n)",
         description: "Sends a JSON-RPC request to get all controls of a component in the Q-SYS Core device.",
         params: [
             {
@@ -147,7 +147,7 @@ export const functionList = [
     },
     {
         name: "get_component_components",
-        snippet: "async def get_component_components(sock: socket.socket)",
+        snippet: "async def get_component_components(\n\tsock: socket.socket\n)",
         description: "Sends a JSON-RPC request to get all child components of a component in the Q-SYS Core device.",
         params: [
             {
@@ -171,12 +171,14 @@ const CodeBlock = ({ funcName, snippet, description, params = [] }) => {
                     {snippet}
                 </SyntaxHighlighter>
             </div>
-            <p className="mt-4">{description}</p>
-            <ul className="list-disc ml-8">
-                {params.map(({ name, desc }) => (
-                    <li key={name}><code>{name}</code>: {desc}</li>
-                ))}
-            </ul>
+            <div className="bg-slate-900 p-4 mt-4 rounded-md text-xs">
+                <p className=" text-sm">{description}</p>
+                <ul className="list-disc mt-2 ml-6">
+                    {params.map(({ name, desc }) => (
+                        <li key={name}><code>{name}</code>: {desc}</li>
+                    ))}
+                </ul>
+            </div>
         </>
 
     );

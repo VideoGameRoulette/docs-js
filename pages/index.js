@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Head from 'next/head';
 import Header from 'components/Header';
 import { MainContainer, SecondaryContainer } from 'components/Containers';
@@ -7,8 +6,6 @@ import Introduction from 'components/Introduction';
 import CodeBlock, { functionList } from 'components/CodeBlock';
 
 export default function Home() {
-  const [isOpen, setOpen] = useState(false);
-
   return (
     <>
       <Head>
@@ -19,16 +16,17 @@ export default function Home() {
       </Head>
       <div className="absolute w-full h-full bg-gray-100 overflow-hidden">
         <MainContainer>
-          <Header title="qsys-qrc-py" version="0.0.1" callback={setOpen} />
+          <Header title="qsys-qrc-py" version="0.0.1" />
           <SecondaryContainer>
             <SideBar />
             <main className="bg-gray-700 w-full h-full overflow-y-auto">
-              <div className="w-full h-full flex flex-col p-8 gap-4 text-gray-200">
+              <div className="w-full h-full flex flex-col xl:p-8 p-4 gap-4 text-gray-200">
                 <div className="w-full h-full">
                   <Introduction />
                   {functionList.map(({ name, snippet, description, params }) => (
                     <CodeBlock key={name} funcName={name} snippet={snippet} description={description} params={params} />
                   ))}
+                  <footer className="w-full h-64"></footer>
                 </div>
               </div>
             </main>

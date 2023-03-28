@@ -3,11 +3,12 @@ import { classNames } from "utils";
 import { PopupBar } from 'components/Navigation';
 
 export const MenuButton = ({ className: externalClassNames = "", name, children, callback = () => null }) => {
+    const [isOpen, setOpen] = useState(false);
     const [state, setState] = useState("closed");
     const [expanded, setExpanded] = useState("false");
 
     const changeState = () => {
-        if (state === "closed") {
+        if (!isOpen) {
             setState("opened");
             return;
         }
@@ -15,7 +16,7 @@ export const MenuButton = ({ className: externalClassNames = "", name, children,
     }
 
     const changeExpanded = () => {
-        if (expanded === "false") {
+        if (!isOpen) {
             setExpanded("true");
             return;
         }
@@ -25,12 +26,12 @@ export const MenuButton = ({ className: externalClassNames = "", name, children,
     const cb = () => {
         changeState();
         changeExpanded();
-        callback(prev => !prev);
+        setOpen(prev => !prev);
     }
 
     return (
         <>
-            <PopupBar open={expanded === "true"} setOpen={cb} />
+            <PopupBar open={isOpen} setOpen={cb} />
             <button
                 className={classNames(externalClassNames, "menu-one bg-slate-700 hover:bg-slate-500 focus:bg-slate-500 border-2 m-2 rounded-md")}
                 aria-expanded={expanded}
@@ -41,7 +42,6 @@ export const MenuButton = ({ className: externalClassNames = "", name, children,
                 {children}
             </button>
         </>
-
     );
 }
 

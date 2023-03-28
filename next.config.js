@@ -1,7 +1,7 @@
 const nextConfig = {
   reactStrictMode: true,
-  basePath: '/docs-js',
-  assetPrefix: '/docs-js/',
+  basePath: '/qsys-qrc-py',
+  assetPrefix: '/qsys-qrc-py',
 }
 
 module.exports = nextConfig;

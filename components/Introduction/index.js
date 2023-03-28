@@ -2,7 +2,7 @@ const Info = {
     title: "Q-SYS Remote Control API",
     description: "This is a Python module for interfacing with the Q-SYS remote control API over a TCP/IP socket connection. The API provides a way to get and set values of controls in the Q-SYS Designer environment.",
     gs: {
-        title: "Getting started",
+        title: "Getting Started",
         p: [],
     },
     pre: {
@@ -28,7 +28,7 @@ const Introduction = () => {
         <>
             <h1 className="text-3xl font-bold mb-4">{Info.title}</h1>
             <p className="mb-4">{Info.description}</p>
-            <h3 className="text-xl font-bold mb-2" id="Getting-started">{Info.gs.title}</h3>
+            <h3 className="text-xl font-bold mb-2" id="Getting-Started">{Info.gs.title}</h3>
             {Info.gs.p.map((str, idx) => (
                 <p key={`gs${idx}`}>{str}</p>
             ))}
