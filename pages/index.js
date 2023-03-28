@@ -32,7 +32,7 @@ export default function Home() {
           <SecondaryContainer>
             <SideBar />
             <main className="bg-gray-700 w-full h-full overflow-y-auto">
-              <div className="w-full h-full flex flex-col xl:p-8 p-4 gap-4 text-gray-200">
+              <div className="w-full h-full flex flex-col md:p-8 p-4 gap-4 text-gray-200">
                 <div className="w-full h-full">
                   <Introduction state={state} />
                   {list.map(({ name, snippet, description, params }) => (

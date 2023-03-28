@@ -63,26 +63,26 @@ const Introduction = ({ state }) => {
 
     return (
         <>
-            <h1 className="xl:text-3xl text-xl font-bold mb-4">{list.title}</h1>
-            <p className="mb-4 xl:text-base text-sm">{list.description}</p>
+            <h1 className="md:text-3xl text-xl font-bold mb-4">{list.title}</h1>
+            <p className="mb-4 md:text-base text-sm">{list.description}</p>
             <h3 className="text-xl font-bold mb-2" id="Getting-Started">{list.gs.title}</h3>
             {list.gs.p.map((str, idx) => (
                 <p key={`gs${idx}`}>{str}</p>
             ))}
             <h4 className="text-lg font-bold mb-2" id="Prerequisites">{list.pre.title}</h4>
-            <ul className="list-disc list-inside mb-4 xl:text-base text-sm">
+            <ul className="list-disc list-inside mb-4 md:text-base text-sm">
                 {list.pre.list.map((str, idx) => (
                     <li key={`pr${idx}`}>{str}</li>
                 ))}
             </ul>
             <h4 className="text-lg font-bold mb-2" id="Installation">{list.install.title}</h4>
-            <p className="mb-4 xl:text-base text-sm">{list.install.p}</p>
+            <p className="mb-4 md:text-base text-sm">{list.install.p}</p>
             <div className="bg-[#1e1e1e] p-4 rounded-md mb-8">
                 <code className="text-gray-400">under construction</code>
             </div>
             <h3 className="text-xl font-bold mb-2" id="Usage">{list.usage.title}</h3>
             {list.usage.p.map((str, idx) => (
-                <p key={`u${idx}`} className='xl:text-base text-sm'>{str}</p>
+                <p key={`u${idx}`} className='md:text-base text-sm'>{str}</p>
             ))}
         </>
     )

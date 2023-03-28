@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-
+import { classNames } from 'utils';
 const main = [
     "Getting-Started",
     "Prerequisites",
@@ -23,7 +23,7 @@ const sub = [
 
 export const SideBar = () => {
     return (
-        <nav className="hidden xl:block bg-gray-900 text-white w-full h-full overflow-y-auto">
+        <nav className="hidden md:block bg-gray-900 text-white w-full h-full overflow-y-auto">
             <h2 className="px-4 py-3 text-lg font-bold">Table of Contents</h2>
             <div>
                 {main.map(str => (
@@ -94,3 +94,34 @@ export const PopupBar = ({ open, setOpen }) => {
         </Transition.Root>
     )
 }
+
+export const MobileNav = ({ open, callback }) => {
+    return (
+        <div
+            className={classNames(open ? "" : "hidden", "absolute z-20 top-0 left-0 w-full h-full overflow-y-auto shadow-lg transition-all duration-1000 transform grid grid-rows-[4rem_1fr]")}
+            style={{ transform: open ? 'translateX(0)' : 'translateX(-100%)' }}
+        >
+            <div className="row-span-1 bg-black opacity-80" onClick={() => callback()}></div>
+            <div className="relative transform bg-gray-700 text-left transition-all sm:m-8 m-0 w-full h-full overflow-auto p-4" >
+                <div className="w-full shrink bg-gray-700 p-4 text-sm font-semibold leading-6 text-gray-200 ring-1 ring-gray-900/5 overflow-auto">
+                    <h2 className="text-lg font-bold mb-4">Table of Contents</h2>
+                    <div className="text-center mb-4">
+                        {main.map(str => (
+                            <a key={str} href={`#${str}`} className="block py-4 odd:bg-gray-600 even:bg-gray-500" onClick={callback}>
+                                {str.replace('-', ' ')}
+                            </a>
+                        ))}
+                    </div>
+                    <h2 className="text-lg font-bold mb-4">Functions</h2>
+                    <div className="text-center">
+                        {sub.map(str => (
+                            <a key={str} href={`#${str}`} className="block py-4 odd:bg-gray-600 even:bg-gray-500" onClick={callback}>
+                                {str}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};

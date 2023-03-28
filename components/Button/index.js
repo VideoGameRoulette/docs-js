@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { classNames } from "utils";
-import { PopupBar } from 'components/Navigation';
+import { PopupBar, MobileNav } from 'components/Navigation';
+import { MainContainer } from 'components/Containers';
 
-export const MenuButton = ({ className: externalClassNames = "", name, children, callback = () => null }) => {
+export const MenuButton = ({ className: externalClassNames = "", name, children }) => {
     const [isOpen, setOpen] = useState(false);
     const [state, setState] = useState("closed");
     const [expanded, setExpanded] = useState("false");
@@ -31,7 +32,8 @@ export const MenuButton = ({ className: externalClassNames = "", name, children,
 
     return (
         <>
-            <PopupBar open={isOpen} setOpen={cb} />
+            {/* <PopupBar open={isOpen} setOpen={cb} /> */}
+            <MobileNav open={isOpen} callback={cb} />
             <button
                 className={classNames(externalClassNames, "menu-one bg-slate-700 hover:bg-slate-500 focus:bg-slate-500 border-2 m-2 rounded-md")}
                 aria-expanded={expanded}
